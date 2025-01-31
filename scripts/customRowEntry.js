@@ -1,6 +1,6 @@
 
 document.getElementById("reg-btn").addEventListener('click', function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const item = document.getElementById("category");
     const price = document.getElementById("price");
@@ -20,7 +20,7 @@ document.getElementById("reg-btn").addEventListener('click', function (event) {
         <td>${item.value}</td>
         <td>P ${price.value}</td>
         <td id='date-time'>${formatDateTime()}</td>
-        <td>
+        <td class="del-row">
             <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
                 <input type="hidden" name="id">
                 <button type="button" class="delete-btn">del</button>
@@ -50,6 +50,8 @@ document.getElementById("reg-btn").addEventListener('click', function (event) {
     })
         .then(response => response.json())
         .then(data => {
+            row.setAttribute('id', 'row-' + data['id']);
+            row.querySelector(".delete-btn").setAttribute('data-id', data['id']);
             console.log(data);
             if (data.status !== 'success') {
                 alert('Entry addition failed: ' + data.message);
