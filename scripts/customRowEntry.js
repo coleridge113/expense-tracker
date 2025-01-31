@@ -41,7 +41,7 @@ document.getElementById("reg-btn").addEventListener('click', function (event) {
     formData.append('item', item.value);
     formData.append('cost', price.value);
 
-    fetch('includes/addExpense.inc.php', {
+    fetch('includes/customExpense.inc.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

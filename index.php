@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Budget</title>
 </head>
 <?php
-include_once 'dbh.inc.php';
-include_once 'functions.inc.php';
+include_once 'includes/dbh.inc.php';
+include_once 'includes/functions.inc.php';
 ?>
 
 
@@ -22,7 +22,7 @@ include_once 'functions.inc.php';
                 <button id="del-btn">Delete</button>
                 <button class="custom-btn" id="custom-btn">Custom</button>
             </div>
-            <form class="btn-form" id="btn-form" action="#">
+            <form class="btn-form" id="btn-form" action="#" method='POST'>
                 <?php
                 displayExpenseButtons($conn);
                 ?>

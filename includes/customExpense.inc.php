@@ -3,6 +3,8 @@ include_once 'dbh.inc.php';
 
 $response = array();
 
+header('Content-Type: application/json');
+
 if (isset($_POST['item']) || !empty($_POST['item']) || isset($_POST['cost']) || !empty($_POST['cost'])) {
     $item = $_POST['item'];
     $cost = $_POST['cost'];

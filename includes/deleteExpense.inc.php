@@ -1,5 +1,5 @@
 <?php
-include_once '../dbh.inc.php';
+include_once 'dbh.inc.php';
 
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
