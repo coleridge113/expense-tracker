@@ -1,5 +1,6 @@
 document.querySelectorAll('.delete-btn').forEach(button => {
     button.addEventListener('click', function(event) {
+        event.preventDefault();
         const id = this.getAttribute('data-id');
         const row = document.getElementById('row-' + id);
 

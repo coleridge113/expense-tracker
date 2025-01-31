@@ -11,7 +11,7 @@ document.querySelectorAll(".btn").forEach(button => {
         <td>${item}</td>
         <td>P ${price}</td>
         <td id='date-time'>${formatDateTime()}</td>
-        <td>
+        <td class="row-del">
             <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
                 <input type="hidden" name="id">
                 <button type="button" class="delete-btn">del</button>
@@ -34,15 +34,17 @@ document.querySelectorAll(".btn").forEach(button => {
         })
             .then(response => response.json())
             .then(data => {
+                row.setAttribute('id', 'row-' + data['id']);
+                row.querySelector('.delete-btn').setAttribute('data-id', data['id']);
                 console.log(data);
                 if (data.status !== 'success') {
                     alert('Entry addition failed: ' + data.message);
-                    row.remove();
+                    // row.remove();
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                row.remove();
+                // row.remove();
             });
     })
 })

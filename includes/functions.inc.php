@@ -56,7 +56,7 @@ function displayExpenseTable($conn)
                 <td>' . htmlspecialchars($row['item']) . '</td>
                 <td>P ' . htmlspecialchars($row['cost']) . '</td>
                 <td>' . $formattedDate . ' ' . $timeOfDay . '</td>
-                <td>
+                <td class="row-del">
                     <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
                         <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                         <button type="button" class="delete-btn" data-id="' . htmlspecialchars($row['id']) . '">del</button>
@@ -97,4 +97,20 @@ function validateId($conn, $id)
         return false;
     }
     $stmt->close();
+}
+
+function getId($conn) {
+    $result = $conn->query('
+        SELECT *
+        FROM expenses
+        ORDER BY date DESC
+        LIMIT 1
+    ');
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['id'];
+    } else {
+        return null;
+    }
 }
