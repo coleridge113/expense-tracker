@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    margin: 100px auto;
+    justify-content: space-around;
+    width: 65vw;
+}
+
+.sub-container {
+
+    outline: 1px solid black;
+}
+
+.btn-block {
+    justify-content: center;
+    width: 450px;
+    height: 500px;
+    overflow: scroll;
+}
+
+.btn-block::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+
+.util-container {
+    outline: 1px solid black;
+}
+
+.util-container>* {
+
+    outline: 1px solid black;
+    height: 20px;
+    padding: 0.5rem;
+    height: auto;
+
+    transition: transform 0.2s;
+}
+
+#add-btn:active,
+#del-btn:active,
+.custom-btn:active {
+    transform: scale(0.9);
+}
+
+.btn-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
+    min-width: 100%;
+}
+
+.btn-form::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+
+.btn {
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 8rem;
+    aspect-ratio: 1;
+    text-align: center;
+    margin: 1rem;
+
+    transition: transform 0.2s;
+
+    position: relative;
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+
+.modal-form {
+    display: none;
+}
+
+.modal[open] .modal-form {
+    --modal-height: 200px;
+    --modal-width: 400px;
+    height: var(--modal-height);
+    width: var(--modal-width);
+    position: absolute;
+    top: calc(50vh - (var(--modal-height)/2));
+    left: calc(50vw - (var(--modal-width)/2));
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    outline: 1px solid black;
+    background: grey;
+}
+
+input {
+    width: 75%;
+    outline: 1px solid blue;
+    background: rgba(255, 255, 255, 0.844);
+    margin-bottom: 1rem;
+
+    padding: 0.5rem;
+}
+
+.modal-button  {
+    display: inline;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    width: 80px;
+    text-align: center;
+
+    transition: transform 0.2s;
+}
+
+.modal-button:active {
+    transform: scale(0.9);
+}
+
+#cancel-btn {
+    background-color: red;
+    color: white;
+}
+
+.info-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    outline-color: red;
+    width: 500px;
+    height: 500px;
+
+    padding: 1rem;
+}
+
+p {
+    outline: 1px solid black;
+    height: 100%;
+    padding: 1rem;
+}
+
+.sandbox {
+    overflow: scroll;
+    outline: 1px solid black;
+    padding: 1rem;
+
+
+    height: 180%;
+}
+
+th,
+td {
+    outline: 1px solid black;
+    min-width: 125px;
+    padding: 0.25rem;
+}
+
+#del-row {
+    outline: none;
+}
