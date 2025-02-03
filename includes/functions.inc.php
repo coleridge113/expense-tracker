@@ -10,7 +10,7 @@ function displayExpenseButtons($conn)
 
     while ($row = $result->fetch_assoc()) {
         echo '
-            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '">' . htmlspecialchars($row["item"]) . '</button>
+            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '" id="'. htmlspecialchars($row['id']) .'">' . htmlspecialchars($row["item"]) . '</button>
         ';
     }
 }
@@ -114,26 +114,4 @@ function getId($conn)
     } else {
         return null;
     }
-}
-
-function editPresetButton($conn, $id, $item, $cost)
-{
-    $stmt = $conn->prepare("
-        UPDATE TABLE 
-            expense_preset
-        SET item = ?,
-            cost = ?
-        WHERE
-            id = ?;
-    ");
-    $stmt->bind_param("ssi", $item, $cost, $id);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo "Record updated successfully.";
-    } else {
-        echo "No record updated.";
-    }
-
-    $stmt->close();
 }

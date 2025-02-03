@@ -113,7 +113,7 @@ function callDeleteEventListener() {
 
 }
 
-function handleLongClick(button) {
+function handleLongClick(currBtn) {
     const regBtn = document.getElementById('reg-btn');
     modal.showModal();
 
@@ -125,13 +125,13 @@ function handleLongClick(button) {
 
         console.log(newCategory, newPrice);
 
-        if (newCategory && newCategory !== button.textContent) {
-            button.textContent = newCategory;
+        if (newCategory && newCategory !== currBtn.textContent) {
+            currBtn.textContent = newCategory;
             changeFlag = true;
         }
 
-        if (newPrice && newPrice !== button.value) {
-            button.value = newPrice;
+        if (newPrice && newPrice !== currBtn.value) {
+            currBtn.value = newPrice;
             changeFlag = true;
         }
 
@@ -139,11 +139,36 @@ function handleLongClick(button) {
             info.innerHTML = `
             Modified!<br>
             <br>
-            Type: ${button.textContent}<br>
-            Cost: P${button.value}
+            Type: ${currBtn.textContent}<br>
+            Cost: P${currBtn.value}
             `;
 
             resetModal();
         }
-    })
+
+        const formData = new URLSearchParams();
+        const id = currBtn.getAttribute('id')
+        formData.append('item', newCategory);
+        formData.append('cost', newPrice);
+        formData.append('id', id);
+
+        fetch('../includes/modifyPresetButton.inc.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString(),
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                if (data.status !== 'success') {
+                    console.log('Update failed!');
+                    resetModal();
+                }
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+            })
+    }, { once: true })
 }

@@ -12,8 +12,7 @@ function handleCustomEntry() {
 
         if (!item.value || item.value === 0 || !price.value || price.value === 0) {
             info.innerHTML = 'Invalid inputs!';
-            modalReset();
-            modal.close();
+            resetModal();
             return;
         }
 
@@ -65,12 +64,7 @@ function handleCustomEntry() {
                 row.remove();
             });
 
-        modalReset();
-
-        function modalReset() {
-            item.value = '';
-            price.value = '';
-        }
+        resetModal();
     });
 }
 
