@@ -1,6 +1,25 @@
+// let timer;
+
 document.querySelectorAll(".btn").forEach(button => {
+    button.addEventListener('mousedown', function (event) {
+        event.preventDefault();
+        const currBtn = this;
+        timer = setTimeout(function () {
+            handleLongClick(currBtn)
+        }, 500);
+    })
+
+    button.addEventListener('mouseup', function () {
+        clearTimeout(timer);
+    })
+
+    button.addEventListener('mouseleave', function () {
+        clearTimeout(timer);
+    })
+
     button.addEventListener('click', function (event) {
         event.preventDefault();
+        clearTimeout(timer);
         const item = button.textContent;
         const price = button.getAttribute('value');
 
@@ -92,4 +111,39 @@ function callDeleteEventListener() {
         });
     });
 
+}
+
+function handleLongClick(button) {
+    const regBtn = document.getElementById('reg-btn');
+    modal.showModal();
+
+    regBtn.addEventListener('click', function () {
+        console.log('click');
+        const newCategory = document.getElementById('category').value.trim();
+        const newPrice = document.getElementById('price').value.trim();
+        let changeFlag = false;
+
+        console.log(newCategory, newPrice);
+
+        if (newCategory && newCategory !== button.textContent) {
+            button.textContent = newCategory;
+            changeFlag = true;
+        }
+
+        if (newPrice && newPrice !== button.value) {
+            button.value = newPrice;
+            changeFlag = true;
+        }
+
+        if (changeFlag) {
+            info.innerHTML = `
+            Modified!<br>
+            <br>
+            Type: ${button.textContent}<br>
+            Cost: P${button.value}
+            `;
+
+            resetModal();
+        }
+    })
 }

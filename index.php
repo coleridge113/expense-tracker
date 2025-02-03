@@ -63,8 +63,8 @@ include_once 'includes/functions.inc.php';
 </body>
 <!-- <script src="script.js"></script> -->
 <script src="script2.js"></script>
-<script src="scripts/deleteRowEntry.js"></script>
-<script src="scripts/customRowEntry.js"></script>
 <script src="scripts/addRowEntry.js"></script>
+<script src="scripts/customRowEntry.js"></script>
+<script src="scripts/deleteRowEntry.js"></script>
 
 </html>

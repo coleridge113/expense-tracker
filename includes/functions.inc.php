@@ -99,7 +99,8 @@ function validateId($conn, $id)
     $stmt->close();
 }
 
-function getId($conn) {
+function getId($conn)
+{
     $result = $conn->query("
         SELECT *
         FROM expenses
@@ -107,10 +108,32 @@ function getId($conn) {
         LIMIT 1
     ");
 
-    if($result->num_rows > 0) {
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         return $row['id'];
     } else {
         return null;
     }
+}
+
+function editPresetButton($conn, $id, $item, $cost)
+{
+    $stmt = $conn->prepare("
+        UPDATE TABLE 
+            expense_preset
+        SET item = ?,
+            cost = ?
+        WHERE
+            id = ?;
+    ");
+    $stmt->bind_param("ssi", $item, $cost, $id);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "Record updated successfully.";
+    } else {
+        echo "No record updated.";
+    }
+
+    $stmt->close();
 }
