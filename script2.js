@@ -97,7 +97,7 @@ const registerPrice = (btn) => {
 //         resetModal();
 //         modalBtn.removeEventListener('click', handleModifyButton);
 //     };
-    
+
 //     timer = setTimeout(() => {
 //         isLongPress = true;
 //         modal.showModal();
@@ -111,7 +111,7 @@ const registerPrice = (btn) => {
 //         registerPrice(event.target);
 //     }
 //     isLongPress = false;
-    
+
 // };
 
 // const handleMouseLeave = () => {
@@ -119,30 +119,9 @@ const registerPrice = (btn) => {
 //     isLongPress = false;
 // };
 
-customBtn.addEventListener('click', () => {
-    modal.showModal();
+// customBtn.addEventListener('click', handleCustomEntry, 
+//     { once: true });
 
-    modalBtn.addEventListener('click', () => {
-        const newCategory = category.value.trim();
-        const newPrice = price.value.trim();
-
-        handleCustomEntry();
-        
-        if (newCategory && newPrice) {
-            info.innerHTML = `
-                Purchased!<br>
-                <br>
-                Type: ${newCategory}<br>
-                Cost: P${newPrice}
-                `;
-            updateTable(newCategory, newPrice);
-        } else {
-            info.innerHTML = `Invalid inputs!`;
-        }
-
-        resetModal();
-    }, { once: true });
-});
 
 cancelBtn.addEventListener('click', () => {
     resetModal();

@@ -1,4 +1,9 @@
+// customBtn.addEventListener('click', handleCustomEntry());
 
+document.getElementById('custom-btn').addEventListener('click', () => {
+    modal.showModal();
+    handleCustomEntry();
+});
 function handleCustomEntry() {
     document.getElementById("reg-btn").addEventListener('click', function (event) {
         event.preventDefault();
@@ -18,7 +23,7 @@ function handleCustomEntry() {
 
         row.innerHTML = `
         <td>${item.value}</td>
-        <td>P ${price.value}</td>
+        <td>P ${(price.value / 1.0).toFixed(2)}</td>
         <td id='date-time'>${formatDateTime()}</td>
         <td class="del-row">
             <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
@@ -65,12 +70,12 @@ function handleCustomEntry() {
             });
 
         resetModal();
-    });
+    }, { once: true });
 }
 
 function formatDateTime() {
     const now = new Date();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     const year = now.getFullYear();
     const hours = now.getHours();
