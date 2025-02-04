@@ -66,5 +66,6 @@ include_once 'includes/functions.inc.php';
 <script src="scripts/addRowEntry.js"></script>
 <script src="scripts/customRowEntry.js"></script>
 <script src="scripts/deleteRowEntry.js"></script>
+<script src="scripts/addPresetButton.js"></script>
 
 </html>

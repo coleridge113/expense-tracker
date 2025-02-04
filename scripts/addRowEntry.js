@@ -1,5 +1,3 @@
-// let timer;
-
 document.querySelectorAll(".btn").forEach(button => {
     button.addEventListener('mousedown', function (event) {
         event.preventDefault();
@@ -28,7 +26,7 @@ document.querySelectorAll(".btn").forEach(button => {
 
         row.innerHTML = `
         <td>${item}</td>
-        <td>P ${price}</td>
+        <td>P ${(price / 1.0).toFixed(2)}</td>
         <td id='date-time'>${formatDateTime()}</td>
         <td class="del-row">
             <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
