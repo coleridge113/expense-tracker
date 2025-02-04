@@ -18,7 +18,7 @@ include_once 'includes/functions.inc.php';
     <div class="container main-container">
         <div class="container sub-container btn-block">
             <div class="util-container">
-                <button id="add-btn">Add</button>
+                <button id="add-btn" type="button">Add</button>
                 <button id="del-btn">Delete</button>
                 <button class="custom-btn" id="custom-btn">Custom</button>
             </div>

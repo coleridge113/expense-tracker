@@ -10,7 +10,7 @@ function displayExpenseButtons($conn)
 
     while ($row = $result->fetch_assoc()) {
         echo '
-            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '" id="'. htmlspecialchars($row['id']) .'">' . htmlspecialchars($row["item"]) . '</button>
+            <button class="btn" type="button" value="' . htmlspecialchars($row["cost"]) . '" id="'. htmlspecialchars($row['id']) .'">' . htmlspecialchars($row["item"]) . '</button>
         ';
     }
 }
@@ -105,6 +105,22 @@ function getId($conn)
         SELECT *
         FROM expenses
         ORDER BY date DESC
+        LIMIT 1
+    ");
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['id'];
+    } else {
+        return null;
+    }
+}
+
+function getIdPresetButton($conn){
+    $result = $conn->query("
+        SELECT *
+        FROM expense_preset
+        ORDER BY id DESC
         LIMIT 1
     ");
 
