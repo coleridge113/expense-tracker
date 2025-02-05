@@ -1,30 +1,33 @@
-document.querySelectorAll(".btn").forEach(button => {
-    button.addEventListener('mousedown', function (event) {
-        event.preventDefault();
-        const currBtn = this;
-        timer = setTimeout(function () {
-            handleLongClick(currBtn)
-        }, 500);
-    })
+handlePresetButtonEventListener();
 
-    button.addEventListener('mouseup', function () {
-        clearTimeout(timer);
-    })
+function handlePresetButtonEventListener() {
+    document.querySelectorAll(".btn").forEach(button => {
+        button.addEventListener('mousedown', function (event) {
+            event.preventDefault();
+            const currBtn = this;
+            timer = setTimeout(function () {
+                handleLongClick(currBtn)
+            }, 500);
+        })
 
-    button.addEventListener('mouseleave', function () {
-        clearTimeout(timer);
-    })
+        button.addEventListener('mouseup', function () {
+            clearTimeout(timer);
+        })
 
-    button.addEventListener('click', function (event) {
-        event.preventDefault();
-        clearTimeout(timer);
-        const item = button.textContent;
-        const price = button.getAttribute('value');
+        button.addEventListener('mouseleave', function () {
+            clearTimeout(timer);
+        })
 
-        const table = document.getElementById("history-table");
-        const row = document.createElement("tr");
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            clearTimeout(timer);
+            const item = button.textContent;
+            const price = button.getAttribute('value');
 
-        row.innerHTML = `
+            const table = document.getElementById("history-table");
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
         <td>${item}</td>
         <td>P ${(price / 1.0).toFixed(2)}</td>
         <td id='date-time'>${formatDateTime()}</td>
@@ -36,36 +39,37 @@ document.querySelectorAll(".btn").forEach(button => {
         </td>
         `;
 
-        table.appendChild(row);
+            table.appendChild(row);
 
-        const formData = new URLSearchParams();
-        formData.append('item', item);
-        formData.append('cost', price);
+            const formData = new URLSearchParams();
+            formData.append('item', item);
+            formData.append('cost', price);
 
-        fetch('includes/addExpense.inc.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formData.toString()
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                row.setAttribute('id', 'row-' + data['id']);
-                row.querySelector(".delete-btn").setAttribute('data-id', data['id']);
-                if (data.status !== 'success') {
-                    alert('Entry addition failed: ' + data.message);
-                    row.remove();
-                }
-                callDeleteEventListener();
+            fetch('includes/addExpense.inc.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString()
             })
-            .catch(error => {
-                console.error('Error:', error);
-                row.remove();
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    row.setAttribute('id', 'row-' + data['id']);
+                    row.querySelector(".delete-btn").setAttribute('data-id', data['id']);
+                    if (data.status !== 'success') {
+                        alert('Entry addition failed: ' + data.message);
+                        row.remove();
+                    }
+                    callDeleteEventListener();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    row.remove();
+                });
+        })
     })
-})
+}
 
 function formatDateTime() {
     const now = new Date();

@@ -13,6 +13,8 @@ document.getElementById('add-btn').addEventListener('click', function(event){
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     })
+
+    handlePresetButtonEventListener();
     // .then(response => response.json())
     // .then(data => {
     //     console.log(data);
@@ -25,4 +27,6 @@ document.getElementById('add-btn').addEventListener('click', function(event){
     //     console.error('Error', error);
     //     btn.remove();
     // })
+
+    // add event listener for new button
 })
