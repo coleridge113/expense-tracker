@@ -165,11 +165,11 @@ td {
     padding: 0.25rem;
 }
 
-.row-del {
+.del-row {
     outline: none;
     transition: transform 0.2s;
 }
 
-.row-del:active {
+.del-row:active {
     transform: scale(0.9);
 }

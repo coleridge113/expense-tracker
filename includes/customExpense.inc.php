@@ -1,6 +1,7 @@
 <?php
 include_once 'dbh.inc.php';
 include_once 'functions.inc.php';
+include_once 'functions.inc.php';
 
 $response = array();
 
@@ -28,11 +29,12 @@ if (isset($_POST['item']) || !empty($_POST['item']) || isset($_POST['cost']) || 
         echo json_encode($response);
         exit();
     }
-    
+
     $stmt->close();
 
     $response['status'] = 'success';
     $response['message'] = 'Record added successfully';
+    $response['id'] = getId($conn);
     $response['id'] = getId($conn);
 
 } else {
@@ -44,4 +46,3 @@ $conn->close();
 
 echo json_encode($response);
 exit();
-?>

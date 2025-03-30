@@ -10,7 +10,7 @@ function displayExpenseButtons($conn)
 
     while ($row = $result->fetch_assoc()) {
         echo '
-            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '">' . htmlspecialchars($row["item"]) . '</button>
+            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '" id="'. htmlspecialchars($row['id']) .'">' . htmlspecialchars($row["item"]) . '</button>
         ';
     }
 }
@@ -56,7 +56,7 @@ function displayExpenseTable($conn)
                 <td>' . htmlspecialchars($row['item']) . '</td>
                 <td>P ' . htmlspecialchars($row['cost']) . '</td>
                 <td>' . $formattedDate . ' ' . $timeOfDay . '</td>
-                <td class="row-del">
+                <td class="del-row">
                     <form method="POST" action="includes/deleteExpense.inc.php" class="deleteForm">
                         <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                         <button type="button" class="delete-btn" data-id="' . htmlspecialchars($row['id']) . '">del</button>
@@ -99,13 +99,14 @@ function validateId($conn, $id)
     $stmt->close();
 }
 
-function getId($conn) {
-    $result = $conn->query('
+function getId($conn)
+{
+    $result = $conn->query("
         SELECT *
         FROM expenses
         ORDER BY date DESC
         LIMIT 1
-    ');
+    ");
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();

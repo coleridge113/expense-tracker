@@ -1,6 +1,7 @@
 <?php
 include_once 'dbh.inc.php';
 include_once 'functions.inc.php';
+include_once 'functions.inc.php';
 
 $response = array();
 
@@ -32,6 +33,7 @@ if (isset($_POST['item']) || !empty($_POST['item']) || isset($_POST['cost']) || 
     $response['status'] = 'success';
     $response['message'] = 'Record added successfully';
     $response['id'] = getId($conn);
+
 } else {
     $response['status'] = 'error';
     $response['message'] = 'Invalid inputs';
