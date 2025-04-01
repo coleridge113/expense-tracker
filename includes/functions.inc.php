@@ -10,7 +10,7 @@ function displayExpenseButtons($conn)
 
     while ($row = $result->fetch_assoc()) {
         echo '
-            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '" id="'. htmlspecialchars($row['id']) .'">' . htmlspecialchars($row["item"]) . '</button>
+            <button class="btn" value="' . htmlspecialchars($row["cost"]) . '" id="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row["item"]) . '</button>
         ';
     }
 }
@@ -47,7 +47,7 @@ function displayExpenseTable($conn)
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-        $dateTime = new DateTime($row['date']);
+        $dateTime = new DateTime($row['date_created']);
         $formattedDate = $dateTime->format('m-d-Y');
         $timeOfDay = $dateTime->format('A');
 
@@ -104,7 +104,7 @@ function getId($conn)
     $result = $conn->query("
         SELECT *
         FROM expenses
-        ORDER BY date DESC
+        ORDER BY date_created DESC
         LIMIT 1
     ");
 

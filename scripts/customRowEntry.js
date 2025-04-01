@@ -69,6 +69,7 @@ function handleCustomEntry() {
                 row.remove();
             });
 
+
         resetModal();
     }, { once: true });
 }

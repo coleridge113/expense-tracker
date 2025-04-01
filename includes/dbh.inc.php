@@ -2,8 +2,8 @@
 
 $servername = 'localhost';
 $username = 'root';
-$password = 'root';
-$dbname = 'expense_project_db';
+$password = '';
+$dbname = 'expensedb';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
